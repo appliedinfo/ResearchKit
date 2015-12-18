@@ -215,7 +215,11 @@
     if (self) {
         _tableView = tableView;
         
-        self.backgroundColor = [UIColor whiteColor];
+        //self.backgroundColor = [UIColor whiteColor];
+        
+        self.backgroundColor = nil;
+        self.backgroundColor = [UIColor clearColor];
+
         
         _label = [ORKFormSectionTitleLabel new];
         _label.text = title;
@@ -844,6 +848,10 @@
             }
         }
     }
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = nil;
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

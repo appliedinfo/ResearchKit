@@ -40,6 +40,8 @@
     if (self) {
         [self init_ORKLabel];
     }
+    self.textColor = [UIColor whiteColor];
+
     return self;
 }
 
@@ -66,6 +68,7 @@
 
 - (void)updateAppearance {
     self.font = [[self class] defaultFont];
+    self.textColor = [UIColor whiteColor];
     [self invalidateIntrinsicContentSize];
 }
 

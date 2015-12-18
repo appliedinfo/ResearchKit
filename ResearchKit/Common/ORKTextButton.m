@@ -31,6 +31,11 @@
 
 #import "ORKTextButton.h"
 
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
 
 @implementation ORKTextButton
 
@@ -63,6 +68,41 @@
     
     [self updateAppearance];
     [self tintColorDidChange];
+    [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+
+    [self setTitleColor:[[UIColor grayColor] colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
+    
+    
+//    UIColor *btnColor = [self colorFromHexString:@"#1B596D"];
+    
+    UIColor *btnColor = [self colorFromHexString:@"#ffffff"];
+
+    UIImage *img = [self imageWithColor:btnColor];
+    
+    [self setBackgroundImage:img forState:UIControlStateNormal];
+    
+}
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:0.5];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (void)tintColorDidChange {
@@ -70,6 +110,9 @@
     
     [self setTitleColor:[self tintColor] forState:UIControlStateNormal];
     [self setTitleColor:[[self tintColor] colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
+    
+    
+
 }
 
 - (void)updateAppearance {
@@ -86,7 +129,7 @@
 + (UIFont *)defaultFont {
     // regular, 14
     UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
-    return [UIFont systemFontOfSize:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 2.0];
+    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 2.0];
 }
 
 - (CGSize)intrinsicContentSize {

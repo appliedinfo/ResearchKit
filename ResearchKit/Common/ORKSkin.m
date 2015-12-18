@@ -76,11 +76,11 @@ static NSMutableDictionary *colors() {
     dispatch_once(&onceToken, ^{
         colors = [@{
                     ORKSignatureColorKey : ORKRGB(0x000000),
-                    ORKBackgroundColorKey : ORKRGB(0xffffff),
-                    ORKToolBarTintColorKey : ORKRGB(0xffffff),
+                    ORKBackgroundColorKey : [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]],
+                    ORKToolBarTintColorKey : ORKRGB(0x1B596D),
                     ORKLightTintColorKey : ORKRGB(0xeeeeee),
                     ORKDarkTintColorKey : ORKRGB(0x888888),
-                    ORKCaptionTextColorKey : ORKRGB(0xcccccc),
+                    ORKCaptionTextColorKey : ORKRGB(0xffffff),
                     ORKBlueHighlightColorKey : [UIColor colorWithRed:0.0 green:122.0 / 255.0 blue:1.0 alpha:1.0],
                     ORKChartDefaultTextColorKey : [UIColor lightGrayColor],
                     ORKGraphAxisColorKey : [UIColor colorWithRed:217.0 / 255.0 green:217.0 / 255.0 blue:217.0 / 255.0 alpha:1.0],

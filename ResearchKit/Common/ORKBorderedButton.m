@@ -41,8 +41,8 @@
 - (void)init_ORKTextButton {
     [super init_ORKTextButton];
     
-    self.layer.borderWidth = 1.0f;
-    self.layer.cornerRadius = 5.0f;
+    self.layer.borderWidth = 0.0f;
+    self.layer.cornerRadius = 0.0f;
     self.fadeDelay = 0.0;
     
     [self setEnabled:YES];
@@ -84,7 +84,7 @@
 - (void)fadeHighlightOrSelectColor {
     // Ignore if it's a race condition
     if (self.enabled && !(self.highlighted || self.selected)) {
-        self.backgroundColor = [UIColor whiteColor];
+        //self.backgroundColor = [UIColor whiteColor];
         self.layer.borderColor = [_normalTintColor CGColor];
     }
 }
@@ -92,7 +92,7 @@
 - (void)updateBorderColor {
 
     if (self.enabled && (self.highlighted || self.selected)) {
-        self.backgroundColor = _normalHighlightOrSelectTintColor;
+        //self.backgroundColor = _normalHighlightOrSelectTintColor;
         self.layer.borderColor = [_normalHighlightOrSelectTintColor CGColor]; // move
     } else if(self.enabled && !(self.highlighted || self.selected)) {
         if (self.fadeDelay > 0) {
@@ -101,7 +101,7 @@
             [self fadeHighlightOrSelectColor];
         }
     } else {
-        self.backgroundColor = [UIColor whiteColor];
+        //self.backgroundColor = [UIColor whiteColor];
         self.layer.borderColor = [_disableTintColor CGColor];
     }
 }
@@ -109,7 +109,7 @@
 + (UIFont *)defaultFont {
     // regular, 17
     UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
-    return [UIFont systemFontOfSize:[[descriptor objectForKey: UIFontDescriptorSizeAttribute] doubleValue]];
+    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 35.0];
 }
 
 @end
