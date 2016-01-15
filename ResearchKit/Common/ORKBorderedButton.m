@@ -30,6 +30,7 @@
 
 
 #import "ORKBorderedButton.h"
+#import "ORKHelpers.h"
 
 
 @implementation ORKBorderedButton {
@@ -45,38 +46,86 @@
     self.layer.cornerRadius = 0.0f;
     self.fadeDelay = 0.0;
     
-    [self setEnabled:YES];
+    self.titleLabel.font = ORKThinFontWithSize(28);
+    
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.1f] forState:UIControlStateHighlighted];
+    
+    
+ //   UIColor *btnColor = [self colorFromHexString:@"#1B596D"];
+ 
+    UIColor *btnColor = [self colorFromHexString:@"#ffffff"];
+    
+    UIImage *img = [self imageWithColor:btnColor];
+    
+   [self setBackgroundImage:img forState:UIControlStateNormal];
+    
+    [self setEnabled:NO];
 }
 
 - (void)tintColorDidChange {
-    [super tintColorDidChange];
+  //  [super tintColorDidChange];
     
-    _normalTintColor = [[self tintColor] colorWithAlphaComponent:1.0f];
+ //   _normalTintColor = [[self tintColor] colorWithAlphaComponent:1.0f];
+    
+    _normalTintColor = [UIColor whiteColor];
     _normalHighlightOrSelectTintColor = _normalTintColor;
-    _disableTintColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f];
+    _disableTintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
+//    
+//    [self setTitleColor:_normalTintColor forState:UIControlStateNormal];
+//    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [self setTitleColor:_disableTintColor forState:UIControlStateDisabled];
     
-    [self setTitleColor:_normalTintColor forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [self setTitleColor:_disableTintColor forState:UIControlStateDisabled];
+   // UIColor *btnColor = [self colorFromHexString:@"#ffffff"];
     
-    [self updateBorderColor];
+  //  UIImage *img = [self imageWithColor:btnColor];
+    
+  //  [self setBackgroundImage:img forState:UIControlStateNormal];
+    
+   // [self updateBorderColor];
 }
 
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:0.3];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
+
 - (void)setHighlighted:(BOOL)highlighted {
-    [super setHighlighted:highlighted];
+    //[super setHighlighted:highlighted];
     
     [self updateBorderColor];
 }
 
 - (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
+   // [super setSelected:selected];
     
     [self updateBorderColor];
 }
 
 - (void)setEnabled:(BOOL)enabled {
-    [super setEnabled:enabled];
+   // [super setEnabled:enabled];
     
     [self updateBorderColor];
 }
@@ -89,21 +138,23 @@
     }
 }
 
+
+
 - (void)updateBorderColor {
 
-    if (self.enabled && (self.highlighted || self.selected)) {
-        //self.backgroundColor = _normalHighlightOrSelectTintColor;
-        self.layer.borderColor = [_normalHighlightOrSelectTintColor CGColor]; // move
-    } else if(self.enabled && !(self.highlighted || self.selected)) {
-        if (self.fadeDelay > 0) {
-            [self performSelector:@selector(fadeHighlightOrSelectColor) withObject:nil afterDelay:self.fadeDelay];
-        } else {
-            [self fadeHighlightOrSelectColor];
-        }
-    } else {
-        //self.backgroundColor = [UIColor whiteColor];
-        self.layer.borderColor = [_disableTintColor CGColor];
-    }
+//    if (self.enabled && (self.highlighted || self.selected)) {
+//        //self.backgroundColor = _normalHighlightOrSelectTintColor;
+//        self.layer.borderColor = [_normalHighlightOrSelectTintColor CGColor]; // move
+//    } else if(self.enabled && !(self.highlighted || self.selected)) {
+//        if (self.fadeDelay > 0) {
+//            [self performSelector:@selector(fadeHighlightOrSelectColor) withObject:nil afterDelay:self.fadeDelay];
+//        } else {
+//            [self fadeHighlightOrSelectColor];
+//        }
+//    } else {
+//        //self.backgroundColor = [UIColor whiteColor];
+//        self.layer.borderColor = [_disableTintColor CGColor];
+//    }
 }
 
 + (UIFont *)defaultFont {

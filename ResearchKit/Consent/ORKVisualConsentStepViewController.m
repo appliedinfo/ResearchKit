@@ -177,7 +177,7 @@
     
     CGRect viewBounds = self.view.bounds;
     
-    self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    //self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
    
     // Prepare pageViewController
     _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -203,7 +203,7 @@
     _animationView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin;
     _animationView.backgroundColor = [UIColor clearColor];
     _animationView.userInteractionEnabled = NO;
-    [self.view addSubview:_animationView];
+   // [self.view addSubview:_animationView];
     
     [self updatePageIndex];
 }
@@ -614,13 +614,15 @@
             // No video animation URL, just a regular push transition animation.
             [self doShowViewController:viewController direction:direction animated:animated completion:completion];
         } else {
-            [self doAnimateFromViewController:fromViewController
-                                 toController:viewController
-                                    direction:direction
-                                          url:url
-                      animateBeforeTransition:animateBeforeTransition
-                      transitionBeforeAnimate:transitionBeforeAnimate
-                                   completion:completion];
+            [self doShowViewController:viewController direction:direction animated:animated completion:completion];
+
+//            [self doAnimateFromViewController:fromViewController
+//                                 toController:viewController
+//                                    direction:direction
+//                                          url:url
+//                      animateBeforeTransition:animateBeforeTransition
+//                      transitionBeforeAnimate:transitionBeforeAnimate
+//                                   completion:completion];
         }
     }
 }

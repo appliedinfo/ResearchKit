@@ -98,7 +98,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"background"] drawInRect:self.view.bounds];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+   // self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+
     
 }
 

@@ -30,6 +30,8 @@
 
 
 #import "ORKTextButton.h"
+#import "ORKHelpers.h"
+
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -68,18 +70,18 @@ alpha:1.0]
     
     [self updateAppearance];
     [self tintColorDidChange];
-    [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+ //   [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
-    [self setTitleColor:[[UIColor grayColor] colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
+ //   [self setTitleColor:[[UIColor grayColor] colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
     
     
 //    UIColor *btnColor = [self colorFromHexString:@"#1B596D"];
     
-    UIColor *btnColor = [self colorFromHexString:@"#ffffff"];
+ //   UIColor *btnColor = [self colorFromHexString:@"#ffffff"];
 
-    UIImage *img = [self imageWithColor:btnColor];
+  //  UIImage *img = [self imageWithColor:btnColor];
     
-    [self setBackgroundImage:img forState:UIControlStateNormal];
+ //   [self setBackgroundImage:img forState:UIControlStateNormal];
     
 }
 
@@ -108,8 +110,8 @@ alpha:1.0]
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     
-    [self setTitleColor:[self tintColor] forState:UIControlStateNormal];
-    [self setTitleColor:[[self tintColor] colorWithAlphaComponent:0.7] forState:UIControlStateHighlighted];
+    //[self setTitleColor:[self tintColor] forState:UIControlStateNormal];
+   // [self setTitleColor:[[self tintColor] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
     
     
 
@@ -130,6 +132,7 @@ alpha:1.0]
     // regular, 14
     UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
     return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 2.0];
+    
 }
 
 - (CGSize)intrinsicContentSize {

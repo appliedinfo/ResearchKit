@@ -57,6 +57,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.imageView.backgroundColor = [UIColor clearColor];
         self.imageView.shouldApplyTint = YES;
         self.imageView.enableTintedImageCaching = YES;
     }

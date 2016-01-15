@@ -78,6 +78,7 @@ static NSMutableDictionary *colors() {
                     ORKSignatureColorKey : ORKRGB(0x000000),
                     ORKBackgroundColorKey : [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]],
                     ORKToolBarTintColorKey : ORKRGB(0x1B596D),
+                    //ORKToolBarTintColorKey :[UIColor colorWithRed:0.0 green:122.0 / 255.0 blue:1.0 alpha:0.2],
                     ORKLightTintColorKey : ORKRGB(0xeeeeee),
                     ORKDarkTintColorKey : ORKRGB(0x888888),
                     ORKCaptionTextColorKey : ORKRGB(0xffffff),

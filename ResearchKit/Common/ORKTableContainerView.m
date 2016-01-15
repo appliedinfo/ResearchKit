@@ -65,7 +65,9 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
         _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-        _tableView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+      //  _tableView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+        _tableView.backgroundColor =[UIColor clearColor];
+
         _tableView.allowsSelection = YES;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         _tableView.preservesSuperviewLayoutMargins = YES;

@@ -199,10 +199,11 @@ static void *_ORKViewControllerToolbarObserverContext = &_ORKViewControllerToolb
 + (void)initialize {
     if (self == [ORKTaskViewController class]) {
         
-        [[UINavigationBar appearanceWhenContainedIn:[ORKTaskViewController class], nil] setTranslucent:NO];
-        if ([[UINavigationBar appearanceWhenContainedIn:[ORKTaskViewController class], nil] barTintColor] == nil) {
+       
+        [[UINavigationBar appearanceWhenContainedIn:[ORKTaskViewController class], nil] setTranslucent:YES];
+       /* if ([[UINavigationBar appearanceWhenContainedIn:[ORKTaskViewController class], nil] barTintColor] == nil) {
             [[UINavigationBar appearanceWhenContainedIn:[ORKTaskViewController class], nil] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
-        }
+        }*/
         
         if ([[UIToolbar appearanceWhenContainedIn:[ORKTaskViewController class], nil] barTintColor] == nil) {
             [[UIToolbar appearanceWhenContainedIn:[ORKTaskViewController class], nil] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
@@ -252,6 +253,15 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     [_childNavigationController didMoveToParentViewController:self];
     _childNavigationController.restorationClass = [self class];
     _childNavigationController.restorationIdentifier = _ChildNavigationControllerRestorationKey;
+    
+    [_childNavigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                       forBarMetrics:UIBarMetricsDefault];
+    _childNavigationController.navigationBar.shadowImage = [UIImage new];
+    _childNavigationController.navigationBar.translucent = YES;
+    _childNavigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    
+
 }
 
 - (instancetype)commonInitWithTask:(id<ORKTask>)task taskRunUUID:(NSUUID *)taskRunUUID {
@@ -268,10 +278,26 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     
     self.taskRunUUID = taskRunUUID;
     
-    [self.childNavigationController.navigationBar setShadowImage:[UIImage new]];
+   // [self.childNavigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    [self.childNavigationController.navigationBar setBackgroundImage:[UIImage new]
+                             forBarMetrics:UIBarMetricsDefault];
+    self.childNavigationController.navigationBar.shadowImage = [UIImage new];
+    self.childNavigationController.navigationBar.translucent = YES;
+    self.childNavigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.childNavigationController.view.backgroundColor =[UIColor clearColor];
+
     self.hairline = [self findHairlineViewUnder:self.childNavigationController.navigationBar];
     self.hairline.alpha = 0.0f;
     self.childNavigationController.toolbar.clipsToBounds = YES;
+    
+    
+    
+    UINavigationController *cnav =self.childNavigationController;
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(cnav.view.frame.origin.x, cnav.view.frame.origin.y, cnav.view.frame.size.width, cnav.view.frame.size.height)];
+    background.image = [UIImage imageNamed:@"background.png"];
+    [self.childNavigationController.view insertSubview:background atIndex:0];
+    
     
     // Ensure taskRunUUID has non-nil valuetaskRunUUID
     (void)[self taskRunUUID];
@@ -933,6 +959,15 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     // Update currentStepViewController now, so we don't accept additional transition requests
     // from the same VC.
     _currentStepViewController = viewController;
+    
+    
+    
+    [_currentStepViewController.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                       forBarMetrics:UIBarMetricsDefault];
+    _currentStepViewController.navigationController.navigationBar.shadowImage = [UIImage new];
+    _currentStepViewController.navigationController.navigationBar.translucent = YES;
+     _currentStepViewController.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+_currentStepViewController.navigationController.view.backgroundColor =[UIColor clearColor];
     
     [self.pageViewController setViewControllers:@[viewController] direction:direction animated:animated completion:^(BOOL finished) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
