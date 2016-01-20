@@ -201,6 +201,13 @@ static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
     viewController.title = _section.title ?: ORKLocalizedString(@"CONSENT_LEARN_MORE_TITLE", nil);
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+
+    UINavigationController *cnav =navigationController;
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(cnav.view.frame.origin.x, cnav.view.frame.origin.y, cnav.view.frame.size.width, cnav.view.frame.size.height)];
+    background.image = [UIImage imageNamed:@"background.png"];
+    [cnav.view insertSubview:background atIndex:0];
+    
+    
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 

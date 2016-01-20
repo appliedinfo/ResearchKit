@@ -33,6 +33,7 @@
 #import "ORKStepViewController_Internal.h"
 #import "ORKConsentLearnMoreViewController.h"
 #import "ORKConsentSharingStep.h"
+#import "ORKSkin.h"
 
 
 @implementation ORKConsentSharingStepViewController
@@ -55,8 +56,19 @@
     
     ORKConsentLearnMoreViewController *viewController = [[ORKConsentLearnMoreViewController alloc] initWithHTMLContent:step.localizedLearnMoreHTMLContent];
     viewController.title = ORKLocalizedString(@"CONSENT_LEARN_MORE_TITLE", nil);
+
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    UINavigationController *cnav =navigationController;
+    UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(cnav.view.frame.origin.x, cnav.view.frame.origin.y, cnav.view.frame.size.width, cnav.view.frame.size.height)];
+    background.image = [UIImage imageNamed:@"background.png"];
+    [cnav.view insertSubview:background atIndex:0];
+    
+    
+    navigationController.view.backgroundColor = [UIColor clearColor];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+     navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    navigationController.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 

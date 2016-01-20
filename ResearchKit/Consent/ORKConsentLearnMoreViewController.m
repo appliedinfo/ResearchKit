@@ -66,13 +66,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    //self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
     _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     
     const CGFloat horizMargin = ORKStandardLeftMarginForTableViewCell(self.view);
-    _webView.backgroundColor = ORKColor(ORKBackgroundColorKey);
-    _webView.scrollView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    //_webView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    //_webView.scrollView.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
     _webView.clipsToBounds = NO;
     _webView.scrollView.clipsToBounds = NO;

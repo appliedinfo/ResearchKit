@@ -130,7 +130,7 @@ static const CGFloat LabelRightMargin = 44.0;
 - (void)updateSelectedItem {
     if (_immediateNavigation == NO) {
         self.accessoryView.hidden = _selectedItem ? NO : YES;
-        self.shortLabel.textColor = _selectedItem ? [self tintColor] : [UIColor blackColor];
+        self.shortLabel.textColor = _selectedItem ? [self tintColor] : [UIColor whiteColor];
         self.longLabel.textColor = _selectedItem ? [[self tintColor] colorWithAlphaComponent:192.0 / 255.0] : [UIColor ork_darkGrayColor];
     }
 }

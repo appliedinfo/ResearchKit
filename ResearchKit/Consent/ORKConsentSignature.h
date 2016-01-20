@@ -74,6 +74,7 @@ ORK_CLASS_AVAILABLE
                                           identifier:(NSString *)identifier
                                            givenName:(nullable NSString *)givenName
                                           familyName:(nullable NSString *)familyName
+                                          email:(nullable NSString *)email
                                       signatureImage:(nullable UIImage *)signatureImage
                                           dateString:(nullable NSString *)signatureDate;
 
@@ -98,6 +99,12 @@ ORK_CLASS_AVAILABLE
  The default value of this property is `YES`. In a consent review step, the name entry screen is not displayed when the value of this property is `NO`.
  */
 @property (nonatomic, assign) BOOL requiresName;
+
+
+/** A Boolean value indicating whether the user needs to enter their email during consent review.
+ */
+@property (nonatomic, assign) BOOL requiresEmail;
+
 
 /**
  A Boolean value indicating whether the user needs to draw a signature during consent review.
@@ -128,6 +135,9 @@ ORK_CLASS_AVAILABLE
 
 /// The family name (last name in Western languages)
 @property (nonatomic, copy, nullable) NSString *familyName;
+
+/// The email
+@property (nonatomic, copy, nullable) NSString *email;
 
 /// The image of the signature, if any.
 @property (nonatomic, copy, nullable) UIImage *signatureImage;

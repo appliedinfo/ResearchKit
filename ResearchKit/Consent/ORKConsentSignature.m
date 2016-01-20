@@ -40,12 +40,14 @@
                                          identifier:(NSString *)identifier
                                           givenName:(NSString *)givenName
                                            familyName:(NSString *)familyName
+                                               email:(NSString *)email
                                      signatureImage:(UIImage *)signatureImage
                                          dateString:(NSString *)signatureDate {
     ORKConsentSignature *sig = [ORKConsentSignature new];
     sig.title = title;
     sig.givenName = givenName;
     sig.familyName = familyName;
+    sig.email = email;
     sig.signatureImage = signatureImage;
     sig.signatureDate = signatureDate;
     sig.identifier = identifier;
@@ -57,7 +59,7 @@
 + (ORKConsentSignature *)signatureForPersonWithTitle:(NSString *)title
                                    dateFormatString:(NSString *)dateFormatString
                                          identifier:(NSString *)identifier {
-    ORKConsentSignature *sig = [ORKConsentSignature signatureForPersonWithTitle:title dateFormatString:dateFormatString identifier:identifier givenName:nil familyName:nil signatureImage:nil dateString:nil ];
+    ORKConsentSignature *sig = [ORKConsentSignature signatureForPersonWithTitle:title dateFormatString:dateFormatString identifier:identifier givenName:nil familyName:nil email:nil signatureImage:nil dateString:nil ];
     return sig;
 }
 
@@ -88,6 +90,7 @@
         ORK_DECODE_OBJ_CLASS(aDecoder, title, NSString);
         ORK_DECODE_OBJ_CLASS(aDecoder, givenName, NSString);
         ORK_DECODE_OBJ_CLASS(aDecoder, familyName, NSString);
+        ORK_DECODE_OBJ_CLASS(aDecoder, email, NSString);
         ORK_DECODE_OBJ_CLASS(aDecoder, signatureDate, NSString);
         ORK_DECODE_BOOL(aDecoder, requiresName);
         ORK_DECODE_BOOL(aDecoder, requiresSignatureImage);
@@ -102,6 +105,7 @@
     ORK_ENCODE_OBJ(aCoder, title);
     ORK_ENCODE_OBJ(aCoder, givenName);
     ORK_ENCODE_OBJ(aCoder, familyName);
+    ORK_ENCODE_OBJ(aCoder, email);
     ORK_ENCODE_OBJ(aCoder, signatureDate);
     ORK_ENCODE_BOOL(aCoder, requiresName);
     ORK_ENCODE_BOOL(aCoder, requiresSignatureImage);
@@ -119,6 +123,7 @@
             && ORKEqualObjects(self.title, castObject.title)
             && ORKEqualObjects(self.givenName, castObject.givenName)
             && ORKEqualObjects(self.familyName, castObject.familyName)
+            && ORKEqualObjects(self.email, castObject.email)
             && ORKEqualObjects(self.signatureDate, castObject.signatureDate)
             && ORKEqualObjects(self.signatureImage, castObject.signatureImage)
             && ORKEqualObjects(self.signatureDateFormatString, castObject.signatureDateFormatString)
@@ -136,7 +141,9 @@
     sig.title = [_title copy];
     sig.givenName = [_givenName copy];
     sig.familyName = [_familyName copy];
+    sig.email = [_familyName copy];
     sig->_requiresName = _requiresName;
+    sig->_requiresEmail = _requiresEmail;
     sig->_requiresSignatureImage = _requiresSignatureImage;
     sig.signatureImage = _signatureImage;
     sig.signatureDateFormatString = [_signatureDateFormatString copy];

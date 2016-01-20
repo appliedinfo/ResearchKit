@@ -80,7 +80,7 @@ static NSMutableDictionary *colors() {
                     ORKToolBarTintColorKey : ORKRGB(0x1B596D),
                     //ORKToolBarTintColorKey :[UIColor colorWithRed:0.0 green:122.0 / 255.0 blue:1.0 alpha:0.2],
                     ORKLightTintColorKey : ORKRGB(0xeeeeee),
-                    ORKDarkTintColorKey : ORKRGB(0x888888),
+                    ORKDarkTintColorKey : ORKRGB(0xeeeeee),
                     ORKCaptionTextColorKey : ORKRGB(0xffffff),
                     ORKBlueHighlightColorKey : [UIColor colorWithRed:0.0 green:122.0 / 255.0 blue:1.0 alpha:1.0],
                     ORKChartDefaultTextColorKey : [UIColor lightGrayColor],

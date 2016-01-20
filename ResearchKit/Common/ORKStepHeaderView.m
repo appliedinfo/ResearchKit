@@ -74,6 +74,15 @@
     [self updateCaptionLabelPreferredWidth];
 }
 
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -88,11 +97,14 @@
         {
             _learnMoreButton = [ORKTextButton new];
             _learnMoreButton.contentEdgeInsets = (UIEdgeInsets){10,10,10,10};
+            
+            [_learnMoreButton setTitleColor:[self colorFromHexString:@"#CE494F"] forState:UIControlStateNormal];
             [_learnMoreButton setTitle:nil forState:UIControlStateNormal];
             [_learnMoreButton addTarget:self action:@selector(learnMoreAction:) forControlEvents:UIControlEventTouchUpInside];
             _learnMoreButton.exclusiveTouch = YES;
             _learnMoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
             _learnMoreButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+            
             [self addSubview:_learnMoreButton];
             self.learnMoreButtonItem = nil;
         }

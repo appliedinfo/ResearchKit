@@ -39,7 +39,7 @@
     // medium , 17
     UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
     const CGFloat defaultSize = 12;
-    return ORKMediumFontWithSize([[descriptor objectForKey: UIFontDescriptorSizeAttribute] doubleValue] + 17.0 - defaultSize);
+    return ORKThinFontWithSize([[descriptor objectForKey: UIFontDescriptorSizeAttribute] doubleValue] + 17.0 - defaultSize);
 }
 
 @end
