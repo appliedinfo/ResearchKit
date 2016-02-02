@@ -400,8 +400,8 @@ static const CGFloat HorizontalMargin = 15.0;
 
 - (void)setEditingHighlight:(BOOL)editingHighlight {
     _editingHighlight = editingHighlight;
-    self.labelLabel.textColor = _editingHighlight ? [self tintColor] : [UIColor blackColor];
-    [self textField].textColor = _editingHighlight ? [self tintColor] : [UIColor blackColor];
+    self.labelLabel.textColor = _editingHighlight ? [self tintColor] : [UIColor whiteColor];
+    [self textField].textColor = _editingHighlight ? [self tintColor] : [UIColor whiteColor];
 }
 
 - (void)dealloc {
@@ -824,12 +824,12 @@ static const CGFloat HorizontalMargin = 15.0;
         answer = nil;
     }
     _textView.text = (NSString *)answer;
-    _textView.textColor = [UIColor blackColor];
+    _textView.textColor = [UIColor whiteColor];
     
     if (_textView.text.length == 0) {
         if ([_textView isFirstResponder]) {
             _textView.text = nil;
-            _textView.textColor = [UIColor blackColor];
+            _textView.textColor = [UIColor whiteColor];
         } else {
             _textView.text = self.formItem.placeholder;
             _textView.textColor = [self placeholderColor];
@@ -881,7 +881,7 @@ static const CGFloat HorizontalMargin = 15.0;
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if (textView.textColor == [self placeholderColor]) {
         textView.text = nil;
-        textView.textColor = [UIColor blackColor];
+        textView.textColor = [UIColor whiteColor];
     }
     // Ask table view to adjust scrollview's position
     [self.delegate formItemCellDidBecomeFirstResponder:self];
@@ -1308,7 +1308,7 @@ static const CGFloat HorizontalMargin = 15.0;
 
 - (void)setEditingHighlight:(BOOL)editingHighlight {
     _editingHighlight = editingHighlight;
-    [_selectionView setTextColor:( _editingHighlight ? [self tintColor] : [UIColor blackColor])];
+    [_selectionView setTextColor:( _editingHighlight ? [self tintColor] : [UIColor whiteColor])];
 }
 
 - (void)locationSelectionViewDidBeginEditing:(ORKLocationSelectionView *)view {

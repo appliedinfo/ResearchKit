@@ -71,8 +71,9 @@
     _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     
     const CGFloat horizMargin = ORKStandardLeftMarginForTableViewCell(self.view);
-    //_webView.backgroundColor = ORKColor(ORKBackgroundColorKey);
-    //_webView.scrollView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    _webView.backgroundColor = [UIColor clearColor];
+    
+    _webView.scrollView.backgroundColor = [UIColor clearColor];
     
     _webView.clipsToBounds = NO;
     _webView.scrollView.clipsToBounds = NO;
@@ -84,11 +85,15 @@
         
         [_webView loadRequest:[NSURLRequest requestWithURL:_contentURL]];
     } else {
-        [_webView loadHTMLString:self.content baseURL:ORKCreateRandomBaseURL()];
+        NSString *whiteText =[NSString stringWithFormat:@"%@%@%@", @"<html><body style='font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; color:#ffffff;font-weight:300'>", self.content ,@"</body></html>"];
+        
+        [_webView loadHTMLString:whiteText baseURL:ORKCreateRandomBaseURL()];
     }
     
     _webView.delegate = self;
     [self.view addSubview:_webView];
+    
+  
     
     _webView.translatesAutoresizingMaskIntoConstraints = NO;
     [self setUpConstraints];

@@ -68,19 +68,25 @@
     
     _toolbar = [[UIToolbar alloc] init];
     _toolbar.items = self.toolbarItems;
+    _toolbar.translucent = YES;
     
-    self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    
+   // self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
     _webView = [UIWebView new];
-    [_webView loadHTMLString:_htmlString baseURL:ORKCreateRandomBaseURL()];
-    _webView.backgroundColor = ORKColor(ORKBackgroundColorKey);
-    _webView.scrollView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+    
+     NSString *whiteText =[NSString stringWithFormat:@"%@%@%@", @"<html><body style='font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;background-color: transparent; color:#ffffff;font-weight:300'>", _htmlString ,@"</body></html>"];
+    [_webView loadHTMLString:whiteText baseURL:ORKCreateRandomBaseURL()];
+    
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.scrollView.backgroundColor = [UIColor clearColor];
     _webView.delegate = self;
     [_webView setClipsToBounds:YES];
     _webView.translatesAutoresizingMaskIntoConstraints = NO;
     _toolbar.translatesAutoresizingMaskIntoConstraints = NO;
     _toolbar.translucent = YES;
 
+     _webView.opaque = NO;
     _webView.clipsToBounds = NO;
     _webView.scrollView.clipsToBounds = NO;
     [self updateLayoutMargins];

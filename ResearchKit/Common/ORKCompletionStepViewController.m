@@ -56,7 +56,7 @@ static const CGFloat TickViewSize = 122;
     self = [super initWithFrame:frame];
     if (self) {
         self.layer.cornerRadius = TickViewSize / 2;
-        [self tintColorDidChange];
+        //[self tintColorDidChange];
         
         UIBezierPath *path = [UIBezierPath new];
         [path moveToPoint:(CGPoint){37, 65}];
@@ -96,7 +96,7 @@ static const CGFloat TickViewSize = 122;
 }
 
 - (void)tintColorDidChange {
-    self.backgroundColor = [self tintColor];
+    //self.backgroundColor = [self tintColor];
 }
 
 - (void)setAnimationPoint:(CGFloat)animationPoint {

@@ -64,10 +64,18 @@
     background.image = [UIImage imageNamed:@"background.png"];
     [cnav.view insertSubview:background atIndex:0];
     
+    [navigationController.navigationBar setBackgroundImage:[UIImage new]
+                             forBarMetrics:UIBarMetricsDefault];
+    navigationController.navigationBar.shadowImage = [UIImage new];
+    navigationController.navigationBar.translucent = YES;
+    navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+
+    
     
     navigationController.view.backgroundColor = [UIColor clearColor];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-     navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
     navigationController.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     [self presentViewController:navigationController animated:YES completion:nil];
 }
