@@ -75,7 +75,7 @@
     
     _webView = [UIWebView new];
     
-     NSString *whiteText =[NSString stringWithFormat:@"%@%@%@", @"<html><body style='font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;background-color: transparent; color:#ffffff;font-weight:300'>", _htmlString ,@"</body></html>"];
+     NSString *whiteText =[NSString stringWithFormat:@"%@%@%@", @"<html><head><style>a { color: #fff !important; }</style><body style='font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;background-color: transparent; color:#ffffff;font-weight:300'>", _htmlString ,@"</body></html>"];
     [_webView loadHTMLString:whiteText baseURL:ORKCreateRandomBaseURL()];
     
     _webView.backgroundColor = [UIColor clearColor];

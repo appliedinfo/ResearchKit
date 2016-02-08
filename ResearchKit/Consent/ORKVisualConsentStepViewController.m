@@ -152,7 +152,8 @@
         
         NSArray *sections = self.visualConsentStep.consentDocument.sections;
         for (ORKConsentSection *scene in sections) {
-            if (scene.type != ORKConsentSectionTypeOnlyInDocument) {
+            // SKIP CUSTOM TYPE -- HACK
+            if (scene.type != ORKConsentSectionTypeOnlyInDocument && scene.type != ORKConsentSectionTypeCustom) {
                 [visualSections addObject:scene];
             }
         }

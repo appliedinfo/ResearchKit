@@ -237,15 +237,18 @@
     backButton.accessibilityLabel = ORKLocalizedString(@"AX_BUTTON_BACK", nil);
     _backButtonItem = backButton;
     _internalBackButtonItem = backButton;
+    _internalBackButtonItem.tintColor = [UIColor whiteColor];
     [self updateNavLeftBarButtonItem];
 }
 
 - (void)updateNavRightBarButtonItem {
     self.navigationItem.rightBarButtonItem = _cancelButtonItem;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
 - (void)updateNavLeftBarButtonItem {
     self.navigationItem.leftBarButtonItem = _backButtonItem;
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
 - (void)setCancelButtonItem:(UIBarButtonItem *)cancelButton {

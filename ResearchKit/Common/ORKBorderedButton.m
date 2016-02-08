@@ -48,6 +48,7 @@
     
     self.titleLabel.font = ORKThinFontWithSize(28);
     
+    
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.1f] forState:UIControlStateHighlighted];

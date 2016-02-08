@@ -67,6 +67,7 @@
     self = [super init];
     if (self) {
         _requiresName = YES;
+        _requiresEmail = YES;
         _requiresSignatureImage = YES;
         self.identifier = [NSUUID UUID].UUIDString;
     }
@@ -141,7 +142,7 @@
     sig.title = [_title copy];
     sig.givenName = [_givenName copy];
     sig.familyName = [_familyName copy];
-    sig.email = [_familyName copy];
+    sig.email = [_email copy];
     sig->_requiresName = _requiresName;
     sig->_requiresEmail = _requiresEmail;
     sig->_requiresSignatureImage = _requiresSignatureImage;
