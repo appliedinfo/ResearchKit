@@ -114,7 +114,8 @@ static const CGFloat PointMinDistanceSquared = PointMinDistance * PointMinDistan
 + (void)initialize {
     if (self == [ORKSignatureView class]) {
         if ([[ORKSignatureView appearance] backgroundColor] == nil) {
-            [[ORKSignatureView appearance] setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+             [[ORKSignatureView appearance] setBackgroundColor: [UIColor clearColor]];
+//            [[ORKSignatureView appearance] setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
         }
     }
 }
@@ -197,7 +198,7 @@ static const CGFloat PointMinDistanceSquared = PointMinDistance * PointMinDistan
 
 - (UIColor *)lineColor {
     if (_lineColor == nil) {
-        _lineColor = ORKColor(ORKSignatureColorKey);
+        _lineColor = [UIColor whiteColor];// ORKColor(ORKSignatureColorKey);
     }
     return _lineColor;
 }
@@ -219,7 +220,7 @@ static const CGFloat PointMinDistanceSquared = PointMinDistance * PointMinDistan
 - (CGPoint)placeholderPoint {
     CGFloat height = self.bounds.size.height;
     
-    CGFloat bottom = 0.90;
+    CGFloat bottom = 0.75;
     
     CGFloat x1 = 0;
         
@@ -235,7 +236,7 @@ static const CGFloat PointMinDistanceSquared = PointMinDistance * PointMinDistan
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         
-        CGFloat bottom = 0.90;
+        CGFloat bottom = 0.75;
         {
             CGFloat x1 = 0;
             CGFloat x2 = width;
@@ -302,10 +303,10 @@ static CGPoint mmid_Point(CGPoint p1, CGPoint p2) {
     [self.currentPath addQuadCurveToPoint:mid2 controlPoint:previousPoint1];
     
     CGRect drawBox = bounds;
-    drawBox.origin.x -= self.lineWidth * 2.0;
-    drawBox.origin.y -= self.lineWidth * 2.0;
-    drawBox.size.width += self.lineWidth * 4.0;
-    drawBox.size.height += self.lineWidth * 4.0;
+    drawBox.origin.x -= self.lineWidth * 2.5;
+    drawBox.origin.y -= self.lineWidth * 2.5;
+    drawBox.size.width += self.lineWidth * 4.5;
+    drawBox.size.height += self.lineWidth * 4.5;
     
     [self setNeedsDisplayInRect:drawBox];
 }
@@ -322,18 +323,18 @@ static CGPoint mmid_Point(CGPoint p1, CGPoint p2) {
 }
 
 - (void)drawRect:(CGRect)rect {
-    [[UIColor whiteColor] setFill];
+    [[UIColor clearColor] setFill];
     CGContextFillRect(UIGraphicsGetCurrentContext(), rect);
     
     for (UIBezierPath *path in self.backgroundLines) {
-        [[[UIColor blackColor] colorWithAlphaComponent:0.2] setStroke];
+        [[[UIColor whiteColor] colorWithAlphaComponent:0.2] setStroke];
         [path stroke];
     }
     
     if (![self signatureExists] && (!self.currentPath || [self.currentPath isEmpty])) {
         [ORKLocalizedString(@"CONSENT_SIGNATURE_PLACEHOLDER", nil) drawAtPoint:[self placeholderPoint]
                                            withAttributes:@{ NSFontAttributeName : [ORKSelectionTitleLabel defaultFont],
-                                                             NSForegroundColorAttributeName : [[UIColor blackColor] colorWithAlphaComponent:0.2]}];
+                                                             NSForegroundColorAttributeName : [[UIColor whiteColor] colorWithAlphaComponent:0.2]}];
     }
     
     for (UIBezierPath *path in self.pathArray) {
@@ -349,7 +350,7 @@ static CGPoint mmid_Point(CGPoint p1, CGPoint p2) {
     UIGraphicsBeginImageContext(self.bounds.size);
     
     for (UIBezierPath *path in self.pathArray) {
-        [self.lineColor setStroke];
+        [[UIColor blackColor] setStroke];
         [path stroke];
     }
     

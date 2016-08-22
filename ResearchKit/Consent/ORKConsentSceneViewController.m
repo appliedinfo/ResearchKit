@@ -86,36 +86,36 @@
 
 static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
     NSString *str = ORKLocalizedString(@"BUTTON_LEARN_MORE", nil);
-    switch (sectionType) {
-        case ORKConsentSectionTypeOverview:
-            str = ORKLocalizedString(@"LEARN_MORE_WELCOME", nil);
-            break;
-        case ORKConsentSectionTypeDataGathering:
-            str = ORKLocalizedString(@"LEARN_MORE_DATA_GATHERING", nil);
-            break;
-        case ORKConsentSectionTypePrivacy:
-            str = ORKLocalizedString(@"LEARN_MORE_PRIVACY", nil);
-            break;
-        case ORKConsentSectionTypeDataUse:
-            str = ORKLocalizedString(@"LEARN_MORE_DATA_USE", nil);
-            break;
-        case ORKConsentSectionTypeTimeCommitment:
-            str = ORKLocalizedString(@"LEARN_MORE_TIME_COMMITMENT", nil);
-            break;
-        case ORKConsentSectionTypeStudySurvey:
-            str = ORKLocalizedString(@"LEARN_MORE_STUDY_SURVEY", nil);
-            break;
-        case ORKConsentSectionTypeStudyTasks:
-            str = ORKLocalizedString(@"LEARN_MORE_TASKS", nil);
-            break;
-        case ORKConsentSectionTypeWithdrawing:
-            str = ORKLocalizedString(@"LEARN_MORE_WITHDRAWING", nil);
-            break;
-        case ORKConsentSectionTypeOnlyInDocument:
-            assert(0); // assert and fall through to custom
-        case ORKConsentSectionTypeCustom:
-            break;
-    }
+//    switch (sectionType) {
+//        case ORKConsentSectionTypeOverview:
+//            str = ORKLocalizedString(@"LEARN_MORE_WELCOME", nil);
+//            break;
+//        case ORKConsentSectionTypeDataGathering:
+//            str = ORKLocalizedString(@"LEARN_MORE_DATA_GATHERING", nil);
+//            break;
+//        case ORKConsentSectionTypePrivacy:
+//            str = ORKLocalizedString(@"LEARN_MORE_PRIVACY", nil);
+//            break;
+//        case ORKConsentSectionTypeDataUse:
+//            str = ORKLocalizedString(@"LEARN_MORE_DATA_USE", nil);
+//            break;
+//        case ORKConsentSectionTypeTimeCommitment:
+//            str = ORKLocalizedString(@"LEARN_MORE_TIME_COMMITMENT", nil);
+//            break;
+//        case ORKConsentSectionTypeStudySurvey:
+//            str = ORKLocalizedString(@"LEARN_MORE_STUDY_SURVEY", nil);
+//            break;
+//        case ORKConsentSectionTypeStudyTasks:
+//            str = ORKLocalizedString(@"LEARN_MORE_TASKS", nil);
+//            break;
+//        case ORKConsentSectionTypeWithdrawing:
+//            str = ORKLocalizedString(@"LEARN_MORE_WITHDRAWING", nil);
+//            break;
+//        case ORKConsentSectionTypeOnlyInDocument:
+//            assert(0); // assert and fall through to custom
+//        case ORKConsentSectionTypeCustom:
+//            break;
+//    }
     return str;
 }
 
@@ -199,8 +199,11 @@ static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
         viewController = [[ORKConsentLearnMoreViewController alloc] initWithHTMLContent:((_section.htmlContent.length > 0) ? _section.htmlContent : _section.escapedContent)];
     }
     viewController.title = _section.title ?: ORKLocalizedString(@"CONSENT_LEARN_MORE_TITLE", nil);
+    viewController.view.backgroundColor = [UIColor clearColor];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+//    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+//    navigationController.modalPresentationCapturesStatusBarAppearance = YES;
 
     UINavigationController *cnav =navigationController;
     UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(cnav.view.frame.origin.x, cnav.view.frame.origin.y, cnav.view.frame.size.width, cnav.view.frame.size.height)];
@@ -213,6 +216,10 @@ static NSString *localizedLearnMoreForType(ORKConsentSectionType sectionType) {
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
     return UIModalPresentationOverFullScreen;
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end

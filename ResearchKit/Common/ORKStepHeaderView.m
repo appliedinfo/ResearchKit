@@ -98,7 +98,7 @@
             _learnMoreButton = [ORKTextButton new];
             _learnMoreButton.contentEdgeInsets = (UIEdgeInsets){10,10,10,10};
             
-            [_learnMoreButton setTitleColor:[self colorFromHexString:@"#CE494F"] forState:UIControlStateNormal];
+            [_learnMoreButton setTitleColor:[self colorFromHexString:@"#03b6fa"] forState:UIControlStateNormal];
             [_learnMoreButton setTitle:nil forState:UIControlStateNormal];
             [_learnMoreButton addTarget:self action:@selector(learnMoreAction:) forControlEvents:UIControlEventTouchUpInside];
             _learnMoreButton.exclusiveTouch = YES;

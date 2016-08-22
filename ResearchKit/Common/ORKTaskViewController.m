@@ -977,6 +977,7 @@ _currentStepViewController.navigationController.view.backgroundColor =[UIColor c
         // Set the progress label only if non-nil or if it is nil having previously set a progress label.
         if (progressLabel || strongSelf->_hasSetProgressLabel) {
             strongSelf.pageViewController.navigationItem.title = progressLabel;
+//            [strongSelf.pageViewController.navigationItem a
         }
         
         strongSelf->_hasSetProgressLabel = (progressLabel != nil);

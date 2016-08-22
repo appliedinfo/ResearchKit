@@ -84,6 +84,7 @@
         CGSize pickerSize = [_picker.pickerView sizeThatFits:(CGSize){self.bounds.size.width,CGFLOAT_MAX}];
         pickerSize.width = MIN(pickerSize.width, self.bounds.size.width);
         _picker.pickerView.frame = (CGRect){{0,0}, pickerSize};
+        
     }
     
     if (_tempPicker) {

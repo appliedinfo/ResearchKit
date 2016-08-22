@@ -40,6 +40,7 @@ static NSString * const FilledBullet = @"\u25CF";
 @implementation ORKCaretOptionalTextField
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"CALLED TEXT FIELD");
     _hitClearButton = NO;
     if ([self allowsSelection]) {
         return [super hitTest:point withEvent:event];
@@ -150,6 +151,7 @@ static NSString * const FilledBullet = @"\u25CF";
 }
 
 - (instancetype)init {
+    NSLog(@"TEXT FINIT");
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:self];
@@ -243,7 +245,7 @@ static NSString * const FilledBullet = @"\u25CF";
         _unitWithPlaceholder = [NSString stringWithFormat:@"    %@",unit];
         _unitWithNumber = [NSString stringWithFormat:@" %@",unit];
         _unitRegularColor = [UIColor blackColor];
-        _unitActiveColor = [UIColor ork_midGrayTintColor];
+        _unitActiveColor = [UIColor blackColor];
     } else {
         _unitWithPlaceholder = nil;
         _unitWithNumber = nil;
@@ -297,6 +299,7 @@ static NSString * const FilledBullet = @"\u25CF";
 }
 
 - (void)textFieldDidChange:(NSNotification *)notification {
+    NSLog(@"FIELD CHANGED");
     [self updateManagedUnitAndPlaceholder];
 }
 
@@ -412,8 +415,10 @@ static const UIEdgeInsets paddingGuess = (UIEdgeInsets){.left = 6, .right=6};
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    NSLog(@"CREATING TEXT FIELD");
     if (self) {
         _textField = [[ORKUnitTextField alloc] init];
+        [_textField setTextColor:[UIColor blackColor]];
         _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_textField];

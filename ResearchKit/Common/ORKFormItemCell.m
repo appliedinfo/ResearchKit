@@ -581,6 +581,7 @@ static const CGFloat HorizontalMargin = 15.0;
 @implementation ORKFormItemTextFieldCell
 
 - (void)cellInit {
+    NSLog(@"INIT TEVIEW HERE");
     [super cellInit];
     self.textField.allowsSelection = YES;
     ORKTextAnswerFormat *answerFormat = (ORKTextAnswerFormat *)[self.formItem impliedAnswerFormat];
@@ -589,6 +590,7 @@ static const CGFloat HorizontalMargin = 15.0;
     self.textField.spellCheckingType = answerFormat.spellCheckingType;
     self.textField.keyboardType = answerFormat.keyboardType;
     self.textField.secureTextEntry = answerFormat.secureTextEntry;
+    [self.textField setTextColor:[UIColor blackColor]];
     
     [self answerDidChange];
 }
@@ -748,7 +750,7 @@ static const CGFloat HorizontalMargin = 15.0;
 
 - (void)cellInit {
     [super cellInit];
-    
+    NSLog(@"INIT CELL");
     _lastSeenLineCount = 1;
     self.labelLabel.text = nil;
     _textView = [[ORKFormTextView alloc] init];
@@ -763,6 +765,8 @@ static const CGFloat HorizontalMargin = 15.0;
     
     [self.contentView addSubview:_textView];
     [self setUpConstraints];
+    
+    [_textView setTextColor: [UIColor blackColor]];
 }
 
 - (void)setUpConstraints {
@@ -800,6 +804,7 @@ static const CGFloat HorizontalMargin = 15.0;
 
 - (void)applyAnswerFormat {
     ORKAnswerFormat *answerFormat = [self.formItem impliedAnswerFormat];
+    
     if ([answerFormat isKindOfClass:[ORKTextAnswerFormat class]]) {
         ORKTextAnswerFormat *textAnswerFormat = (ORKTextAnswerFormat *)answerFormat;
         _maxLength = [textAnswerFormat maximumLength];
@@ -808,6 +813,7 @@ static const CGFloat HorizontalMargin = 15.0;
         _textView.spellCheckingType = textAnswerFormat.spellCheckingType;
         _textView.keyboardType = textAnswerFormat.keyboardType;
         _textView.secureTextEntry = textAnswerFormat.secureTextEntry;
+        [_textView setTextColor:[UIColor blackColor]];
     } else {
         _maxLength = 0;
     }
@@ -824,15 +830,15 @@ static const CGFloat HorizontalMargin = 15.0;
         answer = nil;
     }
     _textView.text = (NSString *)answer;
-    _textView.textColor = [UIColor whiteColor];
+//    _textView.textColor = [UIColor whiteColor];
     
     if (_textView.text.length == 0) {
         if ([_textView isFirstResponder]) {
             _textView.text = nil;
-            _textView.textColor = [UIColor whiteColor];
+//            _textView.textColor = [UIColor whiteColor];
         } else {
             _textView.text = self.formItem.placeholder;
-            _textView.textColor = [self placeholderColor];
+//            _textView.textColor = [self placeholderColor];
         }
     }
 }

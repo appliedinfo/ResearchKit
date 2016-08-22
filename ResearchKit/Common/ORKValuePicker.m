@@ -135,4 +135,21 @@
     [self valueDidChange];
 }
 
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel* pickerLabel = (UILabel*)view;
+    
+    if (!pickerLabel)
+    {
+        pickerLabel = [[UILabel alloc] init];
+        
+        pickerLabel.font = [UIFont fontWithName:@"System"                size:10];
+        
+        pickerLabel.textAlignment=NSTextAlignmentCenter;
+    }
+    [pickerLabel setText:[[_helper textChoiceAtIndex:row] text]];
+    
+    return pickerLabel;
+}
+
 @end

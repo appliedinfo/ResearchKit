@@ -652,6 +652,7 @@
             }
             
             sceneViewController.continueButtonItem = [[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStylePlain target:self action:@selector(next)];
+//            sceneViewController.continueButtonItem
         }
     }
     

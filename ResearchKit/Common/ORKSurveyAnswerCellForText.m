@@ -51,6 +51,7 @@
 }
 
 - (void)applyAnswerFormat {
+    NSLog(@"(VIEW TEXT HERE");
     ORKAnswerFormat *answerFormat = [self.step.answerFormat impliedAnswerFormat];
     
     if ([answerFormat isKindOfClass:[ORKTextAnswerFormat class]]) {
@@ -61,6 +62,7 @@
         self.textView.spellCheckingType = textAnswerFormat.spellCheckingType;
         self.textView.keyboardType = textAnswerFormat.keyboardType;
         self.textView.secureTextEntry = textAnswerFormat.secureTextEntry;
+        [self.textView setTextColor:[UIColor blackColor]];
     } else {
         _maxLength = 0;
     }
@@ -80,6 +82,7 @@
 }
 
 - (void)prepareView {
+    NSLog(@"HCAKDJFHkjsdhfgkjash");
     if (self.textView == nil ) {
         self.preservesSuperviewLayoutMargins = NO;
         self.layoutMargins = ORKStandardLayoutMarginsForTableViewCell(self);
@@ -93,8 +96,9 @@
         
         self.placeHolder = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0, self.bounds.size.width, 36)];
         self.textView.placeHolder = self.placeHolder;
+        [self.textView setTextColor: [UIColor blackColor]];
         self.placeHolder.text = self.step.placeholder? :ORKLocalizedString(@"PLACEHOLDER_LONG_TEXT", nil);
-        self.placeHolder.textColor = [UIColor lightGrayColor];
+        self.placeHolder.textColor = [UIColor blackColor];
         self.placeHolder.userInteractionEnabled = NO;
         [self addSubview:self.placeHolder];
         
@@ -206,7 +210,7 @@
 }
 
 + (CGFloat)suggestedCellHeightForView:(UIView *)view {
-    return 180.0;
+    return 250.0;
 }
 
 @end
@@ -228,7 +232,8 @@
 - (void)textFieldCell_initialize {
     _textField = [[ORKAnswerTextField alloc] initWithFrame:CGRectZero];
     _textField.text = @"";
-    
+    NSLog(@"SETTING UP TEXT");
+    [_textField setTextColor:[UIColor blackColor]];
     _textField.placeholder = self.step.placeholder? : ORKLocalizedString(@"PLACEHOLDER_TEXT_OR_NUMBER", nil);
     _textField.textAlignment = NSTextAlignmentNatural;
     _textField.delegate = self;
@@ -284,6 +289,7 @@
 }
 
 - (void)answerDidChange {
+    
     id answer = self.answer;
     ORKAnswerFormat *answerFormat = [self.step impliedAnswerFormat];
     ORKTextAnswerFormat *textFormat = (ORKTextAnswerFormat *)answerFormat;
@@ -293,6 +299,7 @@
         self.textField.spellCheckingType = textFormat.spellCheckingType;
         self.textField.keyboardType = textFormat.keyboardType;
         self.textField.secureTextEntry = textFormat.secureTextEntry;
+        [self.textField setTextColor:[UIColor blackColor]];
     }
     NSString *displayValue = (answer && answer != ORKNullAnswerValue()) ? answer : nil;
     

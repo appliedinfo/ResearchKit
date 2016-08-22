@@ -46,7 +46,7 @@
     self.layer.cornerRadius = 0.0f;
     self.fadeDelay = 0.0;
     
-    self.titleLabel.font = ORKThinFontWithSize(28);
+    self.titleLabel.font =  [UIFont systemFontOfSize:16 weight:UIFontWeightLight];//ORKThinFontWithSize(28);
     
     
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -160,8 +160,9 @@
 
 + (UIFont *)defaultFont {
     // regular, 17
-    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
-    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 35.0];
+//    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
+    return [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+//    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 35.0];
 }
 
 @end

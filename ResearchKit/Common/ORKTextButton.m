@@ -109,7 +109,7 @@ alpha:1.0]
 
 - (void)tintColorDidChange {
     [super tintColorDidChange];
-    
+//    [self setTitleColor:<#(nullable UIColor *)#> forState:<#(UIControlState)#>]
     //[self setTitleColor:[self tintColor] forState:UIControlStateNormal];
    // [self setTitleColor:[[self tintColor] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
     
@@ -129,9 +129,11 @@ alpha:1.0]
 }
 
 + (UIFont *)defaultFont {
+     return [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
     // regular, 14
-    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
-    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 2.0];
+//    return [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+//    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleCaption1];
+//    return [UIFont fontWithName:@"Helvetica Neue Thin" size:((NSNumber *)[descriptor objectForKey: UIFontDescriptorSizeAttribute]).doubleValue + 2.0];
     
 }
 
@@ -157,6 +159,7 @@ alpha:1.0]
         return CGSizeMake(labelSize.width+horizontalPadding,
                           labelSize.height+verticalPadding);
     }
+    
     return [super intrinsicContentSize];
 }
 

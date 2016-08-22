@@ -79,7 +79,7 @@ static const CGFloat ContinueButtonTouchMargin = 10;
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:nil
                                                      attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1.0
+                                                    multiplier:2.0
                                                       constant:0.0]; // constant will be set in updateConstraintConstantsForWindow:
     _heightConstraint.active = YES;
     
@@ -100,8 +100,9 @@ static const CGFloat ContinueButtonTouchMargin = 10;
 }
 
 + (UIFont *)defaultFont {
-    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
-    return [UIFont systemFontOfSize:[[descriptor objectForKey: UIFontDescriptorSizeAttribute] doubleValue]];
+    return [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+//    UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleHeadline];
+//    return [UIFont systemFontOfSize:[[descriptor objectForKey: UIFontDescriptorSizeAttribute] doubleValue] weight: UIFontWeightLight];
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {

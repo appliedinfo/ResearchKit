@@ -175,6 +175,9 @@ static NSString *const _EmailIdentifier = @"email";
     nameAnswerFormat.autocapitalizationType = UITextAutocapitalizationTypeWords;
     nameAnswerFormat.autocorrectionType = UITextAutocorrectionTypeNo;
     nameAnswerFormat.spellCheckingType = UITextSpellCheckingTypeNo;
+    
+    ORKEmailAnswerFormat *emailAnswerFormat = [ORKEmailAnswerFormat emailAnswerFormat];
+    
     ORKFormItem *givenNameFormItem = [[ORKFormItem alloc] initWithIdentifier:_GivenNameIdentifier
                                                               text:ORKLocalizedString(@"CONSENT_NAME_GIVEN", nil)
                                                       answerFormat:nameAnswerFormat];
@@ -187,7 +190,7 @@ static NSString *const _EmailIdentifier = @"email";
     
     ORKFormItem *emailFormItem = [[ORKFormItem alloc] initWithIdentifier:_EmailIdentifier
                                                                          text:ORKLocalizedString(@"Email", nil)
-                                                                 answerFormat:nameAnswerFormat];
+                                                                 answerFormat:emailAnswerFormat];
     emailFormItem.placeholder = ORKLocalizedString(@"Email", nil);
     
     givenNameFormItem.optional = NO;

@@ -66,6 +66,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:true];
+    
     //self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
     
     _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
@@ -99,6 +101,8 @@
     [self setUpConstraints];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+//    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setUpConstraints {
@@ -120,6 +124,7 @@
 
 - (IBAction)done:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [[UIApplication sharedApplication] setStatusBarHidden:false];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -129,5 +134,6 @@
     }
     return YES;
 }
+
 
 @end
