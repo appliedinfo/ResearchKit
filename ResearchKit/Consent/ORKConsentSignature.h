@@ -74,6 +74,7 @@ ORK_CLASS_AVAILABLE
                                           identifier:(NSString *)identifier
                                            givenName:(nullable NSString *)givenName
                                           familyName:(nullable NSString *)familyName
+                                               email:(nullable NSString *)email
                                       signatureImage:(nullable UIImage *)signatureImage
                                           dateString:(nullable NSString *)signatureDate;
 
@@ -107,6 +108,10 @@ ORK_CLASS_AVAILABLE
  */
 @property (nonatomic, assign) BOOL requiresSignatureImage;
 
+/** A Boolean value indicating whether the user needs to enter their email during consent review.
+ */
+@property (nonatomic, assign) BOOL requiresEmail;
+
 /// @name Identifying signatories
 
 /**
@@ -128,6 +133,9 @@ ORK_CLASS_AVAILABLE
 
 /// The family name (last name in Western languages)
 @property (nonatomic, copy, nullable) NSString *familyName;
+
+/// The email
+@property (nonatomic, copy, nullable) NSString *email;
 
 /// The image of the signature, if any.
 @property (nonatomic, copy, nullable) UIImage *signatureImage;

@@ -134,6 +134,38 @@ ORK_CLASS_AVAILABLE
                           optional:(BOOL) optional;
 
 /**
+ Returns an initialized form item using the specified identifier, title, hidden and answer format.
+ 
+ @param identifier    The string that identifies the form item, which should be unique within the form step.
+ @param text          The text displayed as a prompt for the form item's question.
+ @param answerFormat  The answer format for the form item.
+ @param hidden        A Boolean that determines wether the question is hidden by default.
+ 
+ @return An initialized form item.
+ */
+- (instancetype)initWithIdentifier:(NSString *)identifier
+                              text:(nullable NSString *)text
+                      answerFormat:(nullable ORKAnswerFormat *)answerFormat
+                            hidden:(BOOL) hidden;
+
+/**
+ Returns an initialized form item using the specified identifier, title, optionality, display status and answer format.
+ 
+ @param identifier    The string that identifies the form item, which should be unique within the form step.
+ @param text          The text displayed as a prompt for the form item's question.
+ @param answerFormat  The answer format for the form item.
+ @param optional      A Boolean that determines whether the item is optional
+ @param hidden        A Boolean that determines wether the question is hidden by default.
+ 
+ @return An initialized form item.
+ */
+- (instancetype)initWithIdentifier:(NSString *)identifier
+                              text:(nullable NSString *)text
+                      answerFormat:(nullable ORKAnswerFormat *)answerFormat
+                          optional:(BOOL) optional
+                            hidden: (BOOL) hidden;
+
+/**
  Returns an initialized form item using the specified section title.
  
  @param sectionTitle   The title of the section.
@@ -185,6 +217,14 @@ ORK_CLASS_AVAILABLE
  header is always `nil`, because no answer is expected.
  */
 @property (nonatomic, copy, readonly, nullable) ORKAnswerFormat *answerFormat;
+
+/**
+ A boolean value indicating wether the question is initially hidden by default.
+ 
+ The default value of this property is `NO`. When `YES` the question will be hidden in the form
+ and displayed when the user taps the form item.
+ */
+@property (nonatomic, getter=isHidden) BOOL hidden;
 
 /**
  Returns an form item that can be used for confirming a text entry.
